@@ -12,6 +12,7 @@ services:
       - ./react-app:/yj-react-app
     # 리액트 버그를 수정하기 위한 코드
     stdin_open: true
+    
   nginx:
     # 컨테이너가 멈춘 경우 항상 재실행
     restart: always
