@@ -35,3 +35,20 @@ after_success:
   - docker push yjchoi7166/docker-frontend
   - docker push yjchoi7166/docker-backend
   - docker push yjchoi7166/docker-nginx
+
+# AWS 배포
+deploy:
+  edge: true
+  provider: elasticbeanstalk
+  region: ap-northeast-2
+  app: fullstack-docker-app
+  env: Fullstackdockerapp-env
+  # 빌드 파일을 압축하여 전송할 S3 버킷 : 일라스틱 빈스톡은 해당 버킷을 생성하고 배포 시 참조
+  bucket_name: elasticbeanstalk-ap-northeast-2-085771716532
+  bucket_path: yj-fullstack-docker-app
+  # 해당 브랜치에 push하는 경우에만 배포
+  on:
+    branch: master
+  # travis-ci 환경 변수로 등록한 aws 키 등록
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_PRIVATE_KEY
